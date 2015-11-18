@@ -9,8 +9,10 @@ module.config(function ($urlRouterProvider, $stateProvider) {
 });
 
 module.controller("annonsCtrl", function ($scope, $http) {
-    var nyckelord = "programmerare";
-    var url = "http://api.arbetsformedlingen.se/platsannons/matchning?nyckelord=" + nyckelord;
+    var basurl = "http://api.arbetsformedlingen.se/platsannons/";
+    var query = "nyckelord=programmerare";
+    var sokMetod = "matchning?";
+    var lanMetod = "soklista/lan";
 
     /*$.ajax({
      type: 'GET',
@@ -31,8 +33,12 @@ module.controller("annonsCtrl", function ($scope, $http) {
      console.log("fail");
      }
      });*/
-    $http.get(url).success(function (data) {
-        $scope.data = data;
+    $http.get(basurl+sokMetod+query).success(function (data) {
+        $scope.annonser = data;
+        console.log(data);
+    });
+    $http.get(basurl+lanMetod).success(function (data) {
+        $scope.lan = data;
         console.log(data);
     });
 });
