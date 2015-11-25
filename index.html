@@ -32,9 +32,8 @@
                     </div><!-- /input-group -->
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
-                    <select class="btn btn-default">
-                        <option>Län</option>
-                        <option ng-repeat="item in lan" value="{{item.id}}">
+                    <select ng-model="dropdownlan" class="btn btn-default" ng-change="getKommuner()">
+                        <option ng-repeat="item in lan" value='{{item.id}}'>
                             {{item.namn}}
                         </option>
                     </select>

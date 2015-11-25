@@ -27,35 +27,34 @@ module.controller("annonsCtrl", function ($scope, getService) {
      console.log("fail");
      }
      });*/
-
+    //Skaffa län, ingen indata behövs
     var promiseLan = getService.getLan();
     promiseLan.then(function (data) {
         $scope.lan = data.soklista.sokdata;
-        console.log(data);
     });
-
+    //Söker efter "a" i alla län och kommuner (kan inte söka tomt)
     var promiseSok = getService.getSearch("a", "", "");
     promiseSok.then(function (data) {
         $scope.annonser = data.matchningslista.matchningdata;
-        test = data;
-        console.log("vvvvvvvvvvvvv");
-        console.log($scope.annonser);
-        console.log("^^^^^^^^^^^^");
     });
-
+    //Tar sökningen, länet och kommunen, endast ett fält behöver vara ifyllt
     $scope.sok = function () {
         var nyckelord = "" + $scope.nyckelord;
         var lanid = "" + $scope.lanid;
         var kommunid = "" + $scope.kommunid;
         promiseSok = getService.getSearch(nyckelord, lanid, kommunid);
     };
+    //tar län id och skaffar alla kommuner i länet
     $scope.getKommuner = function () {
-        var lanid = "" + $scope.lanid;
-        promiseKommuner = getService.getKommuner(lanid);
+        var lanid = $scope.dropdownlan;
+        var promiseKommuner = getService.getKommuner(lanid);
+        promiseKommuner.then(function(data){
+            $scope.kommuner = data.soklista.sokdata;
+        });
     };
-    $scope.datum = function(skitdatum){
-        var datum = skitdatum.split("T")[0];
-        return datum;
+    //tar bort tid från datum och behåller bara dag månad och år
+    $scope.datum = function(datum){
+        return datum.split("T")[0];
     };
 });
 
