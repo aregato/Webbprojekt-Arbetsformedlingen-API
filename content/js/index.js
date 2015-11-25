@@ -30,7 +30,7 @@ module.controller("annonsCtrl", function ($scope, getService) {
 
     var promiseLan = getService.getLan();
     promiseLan.then(function (data) {
-        $scope.lan = data;
+        $scope.lan = data.soklista.sokdata;
         console.log(data);
     });
 

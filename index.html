@@ -34,19 +34,17 @@
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <select class="btn btn-default">
                         <option>Län</option>
-                        <option>Län</option>
-                        <option>Län</option>
-                        <option>Län</option>
-                        <option>Län</option>
+                        <option ng-repeat="item in lan" value="{{item.id}}">
+                            {{item.namn}}
+                        </option>
                     </select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <select class="btn btn-default">
                         <option>Kommun</option>
-                        <option>Kommun</option>
-                        <option>Kommun</option>
-                        <option>Kommun</option>
-                        <option>Kommun</option>
+                        <option ng-repeat="kommun in kommuner" value="{{kommun.id}}">
+                            {{kommun.namn}}
+                        </option>
                     </select>
                 </div>
             </div>
