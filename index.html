@@ -48,33 +48,52 @@
             </div>
         </div>
         <br/><br/><br/>
-    <div class="container">
-        <div class="table">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Rubrik</th>
-                        <th>Datum</th>
-                        <th>Yrke</th>
-                        <th>Arbetsplats</th>
-                        <th>Mer info...</th>
-                    </tr>
-                    <tr ng-repeat="annons in annonser">
-                        <td>{{annons.annonsrubrik}}</td>
-                        <td>{{datum(annons.publiceraddatum)}}</td>
-                        <td>{{annons.yrkesbenamning}}</td>
-                        <td>{{annons.arbetsplatsnamn}}</td>
-                        <td>
-                            <button class="btn btn-info" ng-click="getAnnons(annons.annonsid)">
-                                Mer Info
-                            </button>
-                        </td>
-                    </tr>
-                </thead>
-            </table>
+        <div class="container">
+            <div class="table">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Rubrik</th>
+                            <th>Datum</th>
+                            <th>Yrke</th>
+                            <th>Arbetsplats</th>
+                            <th>Mer info...</th>
+                        </tr>
+                        <tr ng-repeat="annons in annonser">
+                            <td>{{annons.annonsrubrik}}</td>
+                            <td>{{datum(annons.publiceraddatum)}}</td>
+                            <td>{{annons.yrkesbenamning}}</td>
+                            <td>{{annons.arbetsplatsnamn}}</td>
+                            <td>
+                                <button class="btn btn-info" 
+                                        ng-click="getAnnons(annons.annonsid)" 
+                                        data-toggle="modal" data-target="#myModal">
+                                    Mer Info
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-    </div>
-        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Beskrivning</h4>
+                    </div>
+                    <div class="modal-body" id="popupDiv">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
