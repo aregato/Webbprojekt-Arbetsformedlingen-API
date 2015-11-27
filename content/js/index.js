@@ -65,7 +65,7 @@ module.controller("annonsCtrl", function ($scope, getService) {
         promiseAnnons = getService.getAnnons(annonsid);
         promiseAnnons.then(function (data) {
             $scope.annons = data.platsannons.annons;
-            console.log($scope.annons);
+            $("#popupDiv").html($scope.annons.annonstext);
         });
     };
     //tar bort tid från datum och behåller bara dag månad och år
