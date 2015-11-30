@@ -76,7 +76,7 @@ module.controller("annonsCtrl", function ($scope, getService) {
 
 module.service("getService", function ($http, $q) {
     this.getSearch = function (nyckelord, lanid, kommunid) {
-        var corsme = "http://crossorigin.me/";
+        var corsme = "https://crossorigin.me/";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var sokMetod = "matchning";
         var query = "?nyckelord=" + nyckelord;
@@ -95,7 +95,7 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getLan = function () {
-        var corsme = "http://crossorigin.me/";
+        var corsme = "https://crossorigin.me/";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var lanMetod = "soklista/lan";
         var deferred = $q.defer();
@@ -111,7 +111,7 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getKommuner = function (lanid){
-        var corsme = "http://crossorigin.me/";
+        var corsme = "https://crossorigin.me/";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var kommunMetod = "soklista/kommuner";
         var query = "?lanid=" + lanid;
@@ -128,7 +128,7 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getAnnons = function (annonsid){
-        var corsme = "http://crossorigin.me/";
+        var corsme = "https://crossorigin.me/";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var annonsid = annonsid;
         var deferred = $q.defer();
