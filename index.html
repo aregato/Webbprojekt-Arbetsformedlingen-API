@@ -53,32 +53,31 @@
         </div>
         <br/><br/><br/>
         <div class="container">
-            <div class="table">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Rubrik</th>
-                            <th>Datum</th>
-                            <th>Yrke</th>
-                            <th>Arbetsplats</th>
-                            <th>Mer info...</th>
-                        </tr>
-                        <tr ng-repeat="annons in annonser">
-                            <td>{{annons.annonsrubrik}}</td>
-                            <td>{{datum(annons.publiceraddatum)}}</td>
-                            <td>{{annons.yrkesbenamning}}</td>
-                            <td>{{annons.arbetsplatsnamn}}</td>
-                            <td>
-                                <button class="btn btn-info" 
-                                        ng-click="getAnnons(annons.annonsid)" 
-                                        data-toggle="modal" data-target="#myModal">
-                                    Mer Info
-                                </button>
-                            </td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Rubrik</th>
+                        <th>Datum</th>
+                        <th>Yrke</th>
+                        <th>Arbetsplats</th>
+                        <th>Mer info...</th>
+                    </tr>
+                    <tr ng-repeat="annons in annonser">
+                        <td>{{annons.annonsrubrik}}</td>
+                        <td>{{datum(annons.publiceraddatum)}}</td>
+                        <td>{{annons.yrkesbenamning}}</td>
+                        <td>{{annons.arbetsplatsnamn}}</td>
+                        <td>
+                            <button class="btn btn-info" 
+                                    ng-click="getAnnons(annons.annonsid)" 
+                                    data-toggle="modal" data-target="#myModal">
+                                Mer Info
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+            <button ng-click="visaMer()">Ladda in fler annonser</button>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
