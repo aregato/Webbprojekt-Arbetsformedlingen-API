@@ -22,28 +22,28 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-btn">
                         </span>
                         <input ng-model="nyckelord" type="text" class="form-control" placeholder="Sök efter...">
                     </div><!-- /input-group -->
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <select ng-model="dropdownlan" class="btn btn-default" ng-change="getKommuner()">
                         <option ng-repeat="item in lan" value='{{item.id}}'>
                             {{item.namn}}
                         </option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <select ng-model="dropdownkommun" class="btn btn-default">
                         <option ng-repeat="kommun in kommuner" value="{{kommun.id}}">
                             {{kommun.namn}}
                         </option>
                     </select>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="col-lg-3 col-md-3 col-sm-12">
                     <button class="btn btn-default" type="text" ng-click="sok()">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         Sök
