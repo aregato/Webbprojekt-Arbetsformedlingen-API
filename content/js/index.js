@@ -25,6 +25,7 @@ module.controller("annonsCtrl", function ($scope, getService) {
         console.log($scope.annonser[0].annonsid);
     });
     //Tar sökningen, länet och kommunen, endast ett fält behöver vara ifyllt
+    //sparar sökningen i $scope.sistasokning
     $scope.sok = function () {
         $scope.sida = 1;
         var nyckelord = "" + $scope.nyckelord;
@@ -54,6 +55,8 @@ module.controller("annonsCtrl", function ($scope, getService) {
             $("#popupDiv").html($scope.annons.annonstext);
         });
     };
+    //tar de sparade värdena och ökar sidnummret med 1
+    //lägger sen till resultatet till $scope.annonser
     $scope.visaMer = function () {
         var nyckelord = $scope.sistasokning[0];
         var lanid = $scope.sistasokning[1];
