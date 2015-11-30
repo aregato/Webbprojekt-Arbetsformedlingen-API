@@ -76,14 +76,14 @@ module.controller("annonsCtrl", function ($scope, getService) {
 
 module.service("getService", function ($http, $q) {
     this.getSearch = function (nyckelord, lanid, kommunid) {
-        var corsme = "https://crossorigin.me/";
+        var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var sokMetod = "matchning";
         var query = "?nyckelord=" + nyckelord;
         query += "&lanid=" + lanid;
         query += "&kommunid=" + kommunid;
         var deferred = $q.defer();
-        $http.get(corsme + basurl + sokMetod + query)
+        $http.get(proxy + encodeURIComponent(basurl + sokMetod + query))
                 .success(function (data, status) {
                     console.log(status);
                     deferred.resolve(data);
@@ -95,11 +95,11 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getLan = function () {
-        var corsme = "https://crossorigin.me/";
+        var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var lanMetod = "soklista/lan";
         var deferred = $q.defer();
-        $http.get(corsme + basurl + lanMetod)
+        $http.get(proxy + encodeURIComponent(basurl + lanMetod))
                 .success(function (data, status) {
                     console.log(status);
                     deferred.resolve(data);
@@ -111,12 +111,12 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getKommuner = function (lanid){
-        var corsme = "https://crossorigin.me/";
+        var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var kommunMetod = "soklista/kommuner";
         var query = "?lanid=" + lanid;
         var deferred = $q.defer();
-        $http.get(corsme + basurl + kommunMetod + query)
+        $http.get(proxy + encodeURIComponent(basurl + kommunMetod + query))
                 .success(function (data, status) {
                     console.log(status);
                     deferred.resolve(data);
@@ -128,11 +128,11 @@ module.service("getService", function ($http, $q) {
     };
 
     this.getAnnons = function (annonsid){
-        var corsme = "https://crossorigin.me/";
+        var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var annonsid = annonsid;
         var deferred = $q.defer();
-        $http.get(corsme + basurl + annonsid)
+        $http.get(proxy + encodeURIComponent(basurl + annonsid))
                 .success(function (data, status) {
                     console.log(status);
                     deferred.resolve(data);
