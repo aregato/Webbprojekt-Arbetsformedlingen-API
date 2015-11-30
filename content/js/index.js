@@ -8,45 +8,31 @@ module.config(function ($urlRouterProvider, $stateProvider) {
 });
 var test;
 module.controller("annonsCtrl", function ($scope, getService) {
-    /*$.ajax({
-     type: 'GET',
-     url: 'http://api.arbetsformedlingen.se/platsannons/matchning?nyckelord=programmerare',
-     contentType: 'application/json',
-     xhrFields: {
-     withCredentials: false
-     },
-     headers: {
-     "Accept": "application/json",
-     "Accept-Language": "sv",
-     "From": "daniel.lundberg@utb.vaxjo.se"
-     },
-     success: function () {
-     console.log("success");
-     },
-     error: function () {
-     console.log("fail");
-     }
-     });*/
     $scope.nyckelord = "";
     $scope.dropdownlan = "";
     $scope.dropdownkommun = "";
+    $scope.sida = 1;
     //Skaffa län, ingen indata behövs
     var promiseLan = getService.getLan();
     promiseLan.then(function (data) {
         $scope.lan = data.soklista.sokdata;
     });
     //Söker efter "a" i alla län och kommuner (kan inte söka tomt)
-    var promiseSok = getService.getSearch("a", "", "");
+    $scope.sistasokning = ["a","",""];
+    var promiseSok = getService.getSearch("a", "", "", "1");
     promiseSok.then(function (data) {
         $scope.annonser = data.matchningslista.matchningdata;
         console.log($scope.annonser[0].annonsid);
     });
     //Tar sökningen, länet och kommunen, endast ett fält behöver vara ifyllt
     $scope.sok = function () {
+        $scope.sida = 1;
         var nyckelord = "" + $scope.nyckelord;
         var lanid = "" + $scope.dropdownlan;
         var kommunid = "" + $scope.dropdownkommun;
-        promiseSok = getService.getSearch(nyckelord, lanid, kommunid);
+        var sida = "" + $scope.sida;
+        $scope.sistasokning = [nyckelord, lanid, kommunid];
+        promiseSok = getService.getSearch(nyckelord, lanid, kommunid, sida);
         promiseSok.then(function (data) {
             $scope.annonser = data.matchningslista.matchningdata;
         });
@@ -68,6 +54,18 @@ module.controller("annonsCtrl", function ($scope, getService) {
             $("#popupDiv").html($scope.annons.annonstext);
         });
     };
+    $scope.visaMer = function () {
+        var nyckelord = $scope.sistasokning[0];
+        var lanid = $scope.sistasokning[1];
+        var kommunid = $scope.sistasokning[2];
+        $scope.sida++;
+        var sida = "" + $scope.sida;
+        promiseSok = getService.getSearch(nyckelord, lanid, kommunid, sida);
+        promiseSok.then(function (data) {
+            $scope.annonser = $scope.annonser.concat(data.matchningslista.matchningdata);
+
+        });
+    };
     //tar bort tid från datum och behåller bara dag månad och år
     $scope.datum = function (datum) {
         return datum.split("T")[0];
@@ -75,13 +73,14 @@ module.controller("annonsCtrl", function ($scope, getService) {
 });
 
 module.service("getService", function ($http, $q) {
-    this.getSearch = function (nyckelord, lanid, kommunid) {
+    this.getSearch = function (nyckelord, lanid, kommunid, sida) {
         var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var sokMetod = "matchning";
         var query = "?nyckelord=" + nyckelord;
         query += "&lanid=" + lanid;
         query += "&kommunid=" + kommunid;
+        query += "&sida=" + sida;
         var deferred = $q.defer();
         $http.get(proxy + encodeURIComponent(basurl + sokMetod + query))
                 .success(function (data, status) {
@@ -110,7 +109,7 @@ module.service("getService", function ($http, $q) {
         return deferred.promise;
     };
 
-    this.getKommuner = function (lanid){
+    this.getKommuner = function (lanid) {
         var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var kommunMetod = "soklista/kommuner";
@@ -127,7 +126,7 @@ module.service("getService", function ($http, $q) {
         return deferred.promise;
     };
 
-    this.getAnnons = function (annonsid){
+    this.getAnnons = function (annonsid) {
         var proxy = "https://jsonp.afeld.me/?url=";
         var basurl = "http://api.arbetsformedlingen.se/platsannons/";
         var annonsid = annonsid;
