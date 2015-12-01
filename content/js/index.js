@@ -8,7 +8,7 @@ module.config(function ($urlRouterProvider, $stateProvider) {
         url: "/"
     });
 });
-var test;
+
 module.controller("annonsCtrl", function ($scope, getService) {
     $scope.nyckelord = "";
     $scope.dropdownlan = "";
@@ -24,7 +24,6 @@ module.controller("annonsCtrl", function ($scope, getService) {
     var promiseSok = getService.getSearch("a", "", "", "1");
     promiseSok.then(function (data) {
         $scope.annonser = data.matchningslista.matchningdata;
-        console.log($scope.annonser[0].annonsid);
     });
     //Tar sökningen, länet och kommunen, endast ett fält behöver vara ifyllt
     //sparar sökningen i $scope.sistasokning
@@ -89,7 +88,6 @@ module.service("getService", function ($http, $q) {
         var deferred = $q.defer();
         $http.get(proxy + encodeURIComponent(basurl + sokMetod + query))
                 .success(function (data, status) {
-                    console.log(status);
                     deferred.resolve(data);
                 }).error(function (data, status) {
             console.log(status);
@@ -105,7 +103,6 @@ module.service("getService", function ($http, $q) {
         var deferred = $q.defer();
         $http.get(proxy + encodeURIComponent(basurl + lanMetod))
                 .success(function (data, status) {
-                    console.log(status);
                     deferred.resolve(data);
                 }).error(function (data, status) {
             console.log(status);
@@ -122,7 +119,6 @@ module.service("getService", function ($http, $q) {
         var deferred = $q.defer();
         $http.get(proxy + encodeURIComponent(basurl + kommunMetod + query))
                 .success(function (data, status) {
-                    console.log(status);
                     deferred.resolve(data);
                 }).error(function (data, status) {
             console.log(status);
@@ -138,7 +134,6 @@ module.service("getService", function ($http, $q) {
         var deferred = $q.defer();
         $http.get(proxy + encodeURIComponent(basurl + annonsid))
                 .success(function (data, status) {
-                    console.log(status);
                     deferred.resolve(data);
                 }).error(function (data, status) {
             console.log(status);
