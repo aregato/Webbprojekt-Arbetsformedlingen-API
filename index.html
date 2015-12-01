@@ -1,4 +1,4 @@
-7<!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="AnnonsApp" lang="en">
     <head>
         <meta charset="utf-8">
@@ -56,23 +56,15 @@
                         </option>
                     </select>
                 </div>
-<<<<<<< HEAD
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <button class="btn btn-block btn-default" type="text" ng-click="sok()">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-=======
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <button class="btn btn-default" type="text" ng-click="sok()">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
->>>>>>> origin/master
-                        Sök
-                    </button>
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Sök
+             
                 </div>
             </div>
         </div>
         <br/><br/><br/>
         <div class="container">
-<<<<<<< HEAD
             <div class="table">
                 <table class="table table-bordered">
                     <thead id="Lättröd">
@@ -99,33 +91,8 @@
                     </thead>
                 </table>
             </div>
-=======
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Rubrik</th>
-                        <th>Datum</th>
-                        <th>Yrke</th>
-                        <th>Arbetsplats</th>
-                        <th>Mer info...</th>
-                    </tr>
-                    <tr ng-repeat="annons in annonser">
-                        <td>{{annons.annonsrubrik}}</td>
-                        <td>{{datum(annons.publiceraddatum)}}</td>
-                        <td>{{annons.yrkesbenamning}}</td>
-                        <td>{{annons.arbetsplatsnamn}}</td>
-                        <td>
-                            <button class="btn btn-info" 
-                                    ng-click="getAnnons(annons.annonsid)" 
-                                    data-toggle="modal" data-target="#myModal">
-                                Mer Info
-                            </button>
-                        </td>
-                    </tr>
-                </thead>
-            </table>
+            
             <button ng-click="visaMer()">Ladda in fler annonser</button>
->>>>>>> origin/master
         </div>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
