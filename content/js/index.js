@@ -142,4 +142,14 @@ module.service("getService", function ($http, $q) {
         });
         return deferred.promise;
     };
+    
+    
+    
+    // Carousellen
+  $(document).ready(function() {
+    $('.carousel').carousel({
+      interval: 6000
+    });
+  });
+  
 });

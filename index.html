@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+7<!DOCTYPE html>
 <html ng-app="AnnonsApp" lang="en">
     <head>
         <meta charset="utf-8">
@@ -8,16 +8,29 @@
         <title>WebbprojektTvå</title>
         <!-- Bootstrap -->
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="Style/carusell.css" rel="stylesheet"/>
     </head>
     <body ng-controller="annonsCtrl">
         <div ui-view></div>
 
-        <div class="jumbotron">
-            <div class="container">
+        <div class="jumbotron" id="Lättröd">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    
+                    <div id="Mörkblå" class="page-header">
                 <h2>Lediga tjänster från arbetsförmedlingen</h2>
                 <h2><small>Här kan du söka efter lediga tjänster över hela landet</small></h2>
+                        <div class="item">
+                        <div class="bannerImage">
+                            <a><img src="bilder/stadsbild1.jpg" alt="bild"></a>
+                         </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
+     
 
 
         <div class="container">
@@ -44,8 +57,8 @@
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3">
-                    <button class="btn btn-default" type="text" ng-click="sok()">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    <button class="btn btn-block btn-default" type="text" ng-click="sok()">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         Sök
                     </button>
                 </div>
@@ -55,15 +68,15 @@
         <div class="container">
             <div class="table">
                 <table class="table table-bordered">
-                    <thead>
-                        <tr>
+                    <thead id="Lättröd">
+                        <tr id="border1">
                             <th>Rubrik</th>
                             <th>Datum</th>
                             <th>Yrke</th>
                             <th>Arbetsplats</th>
                             <th>Mer info...</th>
                         </tr>
-                        <tr ng-repeat="annons in annonser">
+                        <tr id="border2" ng-repeat="annons in annonser">
                             <td>{{annons.annonsrubrik}}</td>
                             <td>{{datum(annons.publiceraddatum)}}</td>
                             <td>{{annons.yrkesbenamning}}</td>
