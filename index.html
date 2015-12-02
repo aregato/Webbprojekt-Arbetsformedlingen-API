@@ -13,24 +13,24 @@
     <body ng-controller="annonsCtrl">
         <div ui-view></div>
 
-        <div class="jumbotron" id="Lättröd">
+        <div class="jumbotron Lättröd">
             <div class="container-fluid">
                 <div class="row-fluid">
-                    
+
                     <div id="Mörkblå" class="page-header">
-                <h2>Lediga tjänster från arbetsförmedlingen</h2>
-                <h2><small>Här kan du söka efter lediga tjänster över hela landet</small></h2>
+                        <h2>Lediga tjänster från arbetsförmedlingen</h2>
+                        <h2><small>Här kan du söka efter lediga tjänster över hela landet</small></h2>
                         <div class="item">
-                        <div class="bannerImage">
-                            <a><img src="bilder/stadsbild1.jpg" alt="bild"></a>
-                         </div>
+                            <div class="bannerImage">
+                                <a><img src="bilder/stadsbild1.jpg" alt="bild"></a>
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-     
+
 
 
         <div class="container">
@@ -59,39 +59,37 @@
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <button class="btn btn-block btn-default" type="text" ng-click="sok()">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Sök
-             
+                    </button>
                 </div>
             </div>
         </div>
         <br/><br/><br/>
         <div class="container">
-            <div class="table">
-                <table class="table table-bordered">
-                    <thead id="Lättröd">
-                        <tr id="border1">
-                            <th>Rubrik</th>
-                            <th>Datum</th>
-                            <th>Yrke</th>
-                            <th>Arbetsplats</th>
-                            <th>Mer info...</th>
-                        </tr>
-                        <tr id="border2" ng-repeat="annons in annonser">
-                            <td>{{annons.annonsrubrik}}</td>
-                            <td>{{datum(annons.publiceraddatum)}}</td>
-                            <td>{{annons.yrkesbenamning}}</td>
-                            <td>{{annons.arbetsplatsnamn}}</td>
-                            <td>
-                                <button class="btn btn-info" 
-                                        ng-click="getAnnons(annons.annonsid)" 
-                                        data-toggle="modal" data-target="#myModal">
-                                    Mer Info
-                                </button>
-                            </td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            
+            <table class="table table-bordered">
+                <thead class="Lättröd">
+                    <tr id="border1">
+                        <th>Rubrik</th>
+                        <th>Datum</th>
+                        <th>Yrke</th>
+                        <th>Arbetsplats</th>
+                        <th>Mer info...</th>
+                    </tr>
+                    <tr id="border2" ng-repeat="annons in annonser">
+                        <td>{{annons.annonsrubrik}}</td>
+                        <td>{{datum(annons.publiceraddatum)}}</td>
+                        <td>{{annons.yrkesbenamning}}</td>
+                        <td>{{annons.arbetsplatsnamn}}</td>
+                        <td>
+                            <button class="btn btn-info" 
+                                    ng-click="getAnnons(annons.annonsid)" 
+                                    data-toggle="modal" data-target="#myModal">
+                                Mer Info
+                            </button>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+
             <button ng-click="visaMer()">Ladda in fler annonser</button>
         </div>
         <!-- Modal -->
@@ -118,6 +116,5 @@
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="content/js/index.js"></script>
-<!--aaaaaaaaaaaa -->
     </body>
 </html>
