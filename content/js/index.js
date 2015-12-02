@@ -66,8 +66,10 @@ module.controller("annonsCtrl", function ($scope, getService) {
         var sida = "" + $scope.sida;
         promiseSok = getService.getSearch(nyckelord, lanid, kommunid, sida);
         promiseSok.then(function (data) {
-            $scope.annonser = $scope.annonser.concat(data.matchningslista.matchningdata);
-
+            if (typeof data.matchningslista.matchningdata !== "undefined")
+            {
+                $scope.annonser = $scope.annonser.concat(data.matchningslista.matchningdata);
+            }
         });
     };
     //tar bort tid från datum och behåller bara dag månad och år
